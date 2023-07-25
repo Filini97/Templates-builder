@@ -6,7 +6,7 @@ public class PersonBuilder {
 
     public PersonBuilder() {
         this.address = "";
-        this.age = ;
+        this.age = -1;
     }
 
     public PersonBuilder setName(String name) {
