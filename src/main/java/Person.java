@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.OptionalInt;
 
 public class Person {
     protected final String name;
@@ -9,7 +10,6 @@ public class Person {
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.age = -1;
     }
 
     public Person(String name, String surname, int age) {
@@ -35,15 +35,16 @@ public class Person {
 
     public String getName() {
         return name;
+
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public int getAge() {
+    public OptionalInt getAge() {
         if (age >= 0) {
-            return age;
+            return OptionalInt.of(age);
         }
         throw new IllegalArgumentException();
     }
@@ -76,10 +77,22 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person: " + '\n' +
-                "name = " + name + '\n' +
-                "surname = " + surname + '\n' +
-                "age = " + age + '\n' +
-                "address = " + address + '\n';
+        if (age < 0 && address == "") {
+            return "Person: " + '\n' +
+                    "name = " + name + '\n' +
+                    "surname = " + surname;
+        } else if (age >= 0 && address == " ") {
+            return "Person: " + '\n' +
+                    "name = " + name + '\n' +
+                    "surname = " + surname + '\n' +
+                    "age = " + age;
+        } else {
+            return "Person: " + '\n' +
+                    "name = " + name + '\n' +
+                    "surname = " + surname + '\n' +
+                    "age = " + age + '\n' +
+                    "address = " + address + '\n';
+        }
     }
 }
+
