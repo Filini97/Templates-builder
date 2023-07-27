@@ -46,7 +46,7 @@ public class Person {
         if (age >= 0) {
             return OptionalInt.of(age);
         }
-        throw new IllegalArgumentException();
+        return OptionalInt.empty();
     }
 
     public String getAddress() {
